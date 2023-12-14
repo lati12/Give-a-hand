@@ -1,0 +1,33 @@
+<div class="p-grid p-ai-center vertical-container">
+  <div class="p-col">
+    <div class="grid col-offset-4" style="margin-top: 2rem">
+      <div class="col-6 shadow-5 box" style="background-color: white;">
+        <div class="flex flex-row justify-content-between">
+
+        </div>
+        <p-divider></p-divider>
+        <div class="p-grid" style="margin: 24px 24px">
+          <div class="p-col">
+            <form [formGroup]="signin">
+              <div class="p-fluid">
+                <div class="field p-float-label">
+                  <input type="text" pInputText id="email" formControlName="email">
+                  <label for="email">Имейл</label>
+                </div>
+
+                <div class="field p-float-label">
+                  <input type="password" pInputText id="password"  formControlName="password" >
+                  <label for="password">Парола</label>
+                </div>
+
+                <div class="flex flex-row justify-content-between">
+                  <button type="submit" (click)="onSubmit()" label="Вход" class="p-offset-3" pButton></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

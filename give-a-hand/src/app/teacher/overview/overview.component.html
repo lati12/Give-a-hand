@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+<div class="flex justify-content-between flex-wrap card-container purple-container">
+  <button pButton pRipple label="Създаване на запис" class="p-button-text" style="margin: 4px" (click)="openNewDialog()"></button>
+</div>
+
+
+<div class="grid" >
+  <div class="col-12" *ngFor="let post of posts">
+    <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow">
+      <ng-template pTemplate="header">
+      </ng-template>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+      <ng-template pTemplate="footer">
+        <p-button label="Save" icon="pi pi-check"></p-button>
+        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+
+
+
+<p-dialog [(visible)]="dialog" [style]="{width: '650px'}" header="Създаване на публикация" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+        <span class="p-float-label">
+            <textarea inputId="textarea"  style="resize: inline; height: 200px"  [(ngModel)]="post.description" pInputTextarea></textarea>
+            <label for="textarea">Описание</label>
+        </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="p-field">
+      <button pButton pRipple type="button"  label="Публикация" style="width: 600px" class="p-button-text"></button>
+    </div>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

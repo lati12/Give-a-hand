@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+<div class="flex justify-content-between flex-wrap card-container purple-container">
+  <button pButton pRipple label="Създаване на запис" class="p-button-text" style="margin: 4px" (click)="openNewDialog()"></button>
+  <button pButton pRipple type="button" (click)="showInfoDialog()" icon="pi pi-info" class="p-button-rounded p-button-secondary p-button-outlined"></button>
+</div>
+
+<div class="card card-width-table">
+  <p-table #dt [value]="parents" [rows]="10" [paginator]="true" [rowHover]="true"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="usersId">Потребител</th>
+        <th pSortableColumn="datetime">Дата на създаване</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-parent>
+      <tr>
+        <td>{{parent.users_id}}</td>
+        <td>{{parent.created_date_time}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="OpenEditDialog(parent)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(parent)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog [(visible)]="dialog" [style]="{width: '450px'}" header="Детайли" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="user">Потребител</label>
+      <input type="text" pInputText id="user" [(ngModel)]="parent.users_id" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !parent.users_id">Полето е задължително.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="date">Дата на създаване</label>
+      <p-calendar [(ngModel)]="parent.created_date_time"  dateFormat="dd.mm.yy"></p-calendar>
+      <small class="p-invalid" *ngIf="submitted && !parent.created_date_time">Полето е задължително.</small>
+    </div>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Отказ" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Запазване" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
